@@ -22,6 +22,11 @@ def main():
     funkin, funkout = getFunk()
     pfunkin = np.array(punkin + funkin)
     pfunkout = np.array(punkout + funkout)
-    pfunkin, pfunkout = shuffle(pfunkin, pfunkout, random_state=0)
+    pfunkin, pfunkout = shuffle(pfunkin, pfunkout, random_state=0) #for some reason i decided to make parallel arrays idk why
+    for i in len(pfunkin): #yeah i dont want parallel arrays
+        pfunk = pfunkout[i] + pfunkin[i] #yeah im really efficient
+    with open(csvfile, "w") as output:
+        writer = csv.writer(output, lineterminator='\n')
+        writer.writerows(pfunk)
 
 main()
